@@ -9,7 +9,7 @@ public interface genericControler {
 	 * Permet de naviguer vers le détails d’un élément. 
 	 * Permet de directement supprimer un élément.
 	 */
-	void index(Model model);  
+	String index(Model model);  
 	/**
 	 * Permet d’afficher la vue de création d’un élément.
 	 */

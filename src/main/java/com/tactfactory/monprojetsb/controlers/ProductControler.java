@@ -7,8 +7,9 @@ import org.springframework.ui.Model;
 public class ProductControler implements genericControler {
 
 	@Override
-	public void index(Model model) {
+	public String index(Model model) {
 		// TODO Auto-generated method stub
+		return null;
 		
 	}
 

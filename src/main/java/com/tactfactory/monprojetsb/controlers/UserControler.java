@@ -15,20 +15,21 @@ public class UserControler implements genericControler {
     @Autowired
     private UserDAO theUserDao;
 
-    
 
-	@Override
-	@RequestMapping(value={"/index", "/"}, method = RequestMethod.GET)
-	public void index(Model model) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void createGet() {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    @RequestMapping(value={"/index", "/"}, method = RequestMethod.GET)
+    public String index(Model model) {
+    	model.addAttribute("page", "index for User");
+    	model.addAttribute("items", theUserDao.findAll());
+    	return "user/index";		
+    }
+
+    @Override
+    public void createGet() {
+    	// TODO Auto-generated method stub
+
+    }
 
 	@Override
 	public void createPost() {
