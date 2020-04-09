@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tactfactory.monprojetsb.dao.UserDAO;
+import com.tactfactory.monprojetsb.entities.User;
 
 @Controller
 @RequestMapping(value="user")
@@ -40,7 +41,7 @@ public class UserControler implements genericControler {
 	
 	@RequestMapping(value={"/create"}, method = RequestMethod.POST)
 	public void createPost(@RequestParam("firstname") String fn , @RequestParam("lastname") String ln ) {
-		
+		theUserDao.save(new User(fn, ln));
 	}
 
 	@Override

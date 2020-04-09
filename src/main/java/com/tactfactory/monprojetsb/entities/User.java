@@ -22,7 +22,20 @@ public class User implements Serializable {
 	
 	@OneToMany
 	private List<Product> products ;
-
+	
+	
+	public User(String firstname, String lastname, List<Product> products) {
+		super();
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.products = products;
+	}
+	public User(String firstname, String lastname) {
+		super();
+		this.firstname = firstname;
+		this.lastname = lastname;
+	}
+	public User() {	}
 	
 	
 	public Long getId() {
