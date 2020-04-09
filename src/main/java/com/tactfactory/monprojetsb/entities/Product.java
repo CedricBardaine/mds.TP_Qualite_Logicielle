@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+@SuppressWarnings("serial")
 @Entity
 //pas besoin de l'annotation @Table ? car ca creer bien les tables dans la bdd
 public class Product implements Serializable {

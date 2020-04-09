@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+@SuppressWarnings("serial")
 @Entity
 // pas besoin de l'annotation @Table ? car ca creer bien les tables dans la bdd
 public class User implements Serializable {

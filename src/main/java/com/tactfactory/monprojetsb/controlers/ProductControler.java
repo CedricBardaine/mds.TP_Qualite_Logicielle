@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tactfactory.monprojetsb.dao.ProductDAO;
-import com.tactfactory.monprojetsb.dao.UserDAO;
 import com.tactfactory.monprojetsb.entities.Product;
-import com.tactfactory.monprojetsb.entities.User;
 
 @Controller
 @RequestMapping(value= {"product"})
