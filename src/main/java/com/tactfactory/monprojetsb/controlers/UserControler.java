@@ -3,6 +3,8 @@ package com.tactfactory.monprojetsb.controlers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,8 +25,7 @@ public class UserControler implements genericControler {
     @Override
     @RequestMapping(value={"/index", "/"}, method = RequestMethod.GET)
     public String index(Model model) {
-    	model.addAttribute("page", "index for User");
-    	model.addAttribute("items", theUserDao.findAll());
+    	setIndexAttributs(model);
     	return "user/index";		
     }
 
@@ -64,9 +65,17 @@ public class UserControler implements genericControler {
 	}
 
 	@Override
-	public void details() {
-		// TODO Auto-generated method stub
+	@GetMapping(value="/show/{id}")
+	public String details(Model model, @PathVariable long id) {
+		String ret = "user/show";
+		model.addAttribute("page", "User Details");
 		
+		if ( theUserDao.findById(id).isPresent() )
+			model.addAttribute("item", theUserDao.findById(id).get());
+		else 
+			ret = "util/badInput" ;
+		
+		return ret ; 		
 	}
 	
 	private void setIndexAttributs(Model model) {

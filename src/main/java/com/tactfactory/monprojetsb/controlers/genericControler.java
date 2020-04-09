@@ -25,7 +25,7 @@ public interface genericControler {
 	/**
 	 *  Permet d’afficher le détails d’un élément (avec les objets non primitif liés).
 	 */
-	public void details() ;
+	public String details(Model model, long id);
 	
 	
 }

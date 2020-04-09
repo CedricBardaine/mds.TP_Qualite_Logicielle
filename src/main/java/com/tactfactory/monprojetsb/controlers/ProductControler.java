@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,8 +25,7 @@ public class ProductControler implements genericControler {
 	@Override
 	@RequestMapping(value={"/index", "/"}, method = RequestMethod.GET)
 	   public String index(Model model) {
-		model.addAttribute("page" , "index for Product");
-		model.addAttribute("items", theProductDao.findAll());
+		setIndexAttributs(model);
 		return "product/index";
 		
 	}
@@ -66,9 +66,17 @@ public class ProductControler implements genericControler {
 	}
 
 	@Override
-	public void details() {
-		// TODO Auto-generated method stub
+	@GetMapping(value="/show/{id}")
+	public String details(Model model, @PathVariable long id) {
+		String ret = "product/show";
+		model.addAttribute("page", "Product Details");
 		
+		if ( theProductDao.findById(id).isPresent() )
+			model.addAttribute("item", theProductDao.findById(id).get());
+		else 
+			ret = "util/badInput" ;
+		
+		return ret ;
 	}
 	
 	private void setIndexAttributs(Model model) {
