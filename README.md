@@ -1,1 +1,5 @@
-TP MDS
+# TP MDS
+
+## ... 
+
+* Création d’interface héritant de « JpaRepository<Entité, TypeClefPrimaire> »
