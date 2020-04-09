@@ -14,13 +14,15 @@ public class ProductControler implements genericControler {
 	}
 
 	@Override
-	public void createGet() {
+	public String createGet() {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void createPost() {
+	public String createPost() {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}

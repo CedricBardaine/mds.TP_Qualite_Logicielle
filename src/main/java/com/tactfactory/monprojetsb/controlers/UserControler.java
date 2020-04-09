@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tactfactory.monprojetsb.dao.UserDAO;
 
@@ -26,14 +27,19 @@ public class UserControler implements genericControler {
     }
 
     @Override
-    public void createGet() {
-    	// TODO Auto-generated method stub
+    @RequestMapping(value={"/create"}, method = RequestMethod.GET)
+    public String createGet() {
+    	return "user/create";	
 
     }
-
+    
 	@Override
-	public void createPost() {
-		// TODO Auto-generated method stub
+	public String createPost() {
+		return "util/error"; 
+	}
+	
+	@RequestMapping(value={"/create"}, method = RequestMethod.POST)
+	public void createPost(@RequestParam("firstname") String fn , @RequestParam("lastname") String ln ) {
 		
 	}
 
@@ -48,5 +54,7 @@ public class UserControler implements genericControler {
 		// TODO Auto-generated method stub
 		
 	}
+
+
 
 }

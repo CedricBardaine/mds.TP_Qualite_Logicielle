@@ -13,11 +13,11 @@ public interface genericControler {
 	/**
 	 * Permet d’afficher la vue de création d’un élément.
 	 */
-	public void createGet() ; 
+	public String createGet() ; 
 	/**
 	 * Permet d’envoyer les informations de l’élément vers le serveur et le sauvegarde dans la base de données.
 	 */
-	public void createPost() ; 
+	public String createPost() ; 
 	/**
 	 * Permet de supprimer un élément de la base de données par son id.
 	 */
