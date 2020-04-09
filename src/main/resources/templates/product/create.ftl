@@ -7,6 +7,7 @@
 
 
 <body>
+<#include "../includable/header.ftl">
 
 <#if page??>
 <h1> ${page} </h1>

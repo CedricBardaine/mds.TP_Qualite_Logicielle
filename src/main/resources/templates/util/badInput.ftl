@@ -9,6 +9,8 @@
 
 
 <body>
+<#include "../includable/header.ftl">
+
 Error... Bad input. <br>
 
 <#if back??>

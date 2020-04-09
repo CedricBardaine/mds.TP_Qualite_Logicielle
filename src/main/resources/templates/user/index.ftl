@@ -8,6 +8,7 @@
 </head>
 
 <body>
+<#include "../includable/header.ftl">
 
 <#if page??>
 
