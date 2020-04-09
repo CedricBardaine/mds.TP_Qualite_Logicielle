@@ -43,8 +43,18 @@ public class ProductControler implements genericControler {
 	}
 	
 	@PostMapping(value="/create")
-	public void createPost(@RequestParam("name") String name , @RequestParam("price") float price) {
-		theProductDao.save(new Product(name, price));
+	public String createPost(Model model, @RequestParam("name") String name , @RequestParam("price") float price) {
+		if (name != "" && String.valueOf(price) != "" ) {
+			theProductDao.save(new Product(name, price));
+			model
+			.addAttribute("page" , "index for Product")
+			.addAttribute("items", theProductDao.findAll());
+			return "product/index" ;
+		}
+		else {
+			model.addAttribute("back" , "/product/create");
+			return "util/badInput";
+		}
 	}
 
 	@Override

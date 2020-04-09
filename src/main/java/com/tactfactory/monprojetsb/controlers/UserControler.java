@@ -40,8 +40,18 @@ public class UserControler implements genericControler {
 	}
 	
 	@RequestMapping(value={"/create"}, method = RequestMethod.POST)
-	public void createPost(@RequestParam("firstname") String fn , @RequestParam("lastname") String ln ) {
-		theUserDao.save(new User(fn, ln));
+	public String createPost(Model model, @RequestParam("firstname") String fn , @RequestParam("lastname") String ln ) {
+		if (fn != "" && ln != "" ) {
+			theUserDao.save(new User(fn, ln));
+			model
+			.addAttribute("page", "index for User")
+			.addAttribute("items", theUserDao.findAll());
+			return "user/index";
+		}
+		else {
+			model.addAttribute("back" , "/user/create");
+			return "util/badInput";
+		}
 	}
 
 	@Override
