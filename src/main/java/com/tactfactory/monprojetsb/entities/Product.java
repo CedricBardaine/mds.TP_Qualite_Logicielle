@@ -19,7 +19,17 @@ public class Product implements Serializable {
 	private float price ;
 
 	
+	public Product() {	}
 	
+	public Product(String name, float price) {
+		super();
+		this.name = name;
+		this.price = price;
+	}
+	
+	
+
+
 	public Long getId() {
 		return id;
 	}

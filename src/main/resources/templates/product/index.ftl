@@ -21,9 +21,9 @@
 
 <tr>
 
-<th>Firstname</th>
+<th>Name</th>
 
-<th>Lastname</th>
+<th>Price</th>
 
 </tr>
 
@@ -32,9 +32,9 @@
 
 <tr>
 
-<td>${item.firstname}</td>
+<td>${item.name}</td>
 
-<td>${item.lastname}</td>
+<td>${item.price}</td>
 
 <td><a href="show/${item["id"]}">Show</a></td>
 
