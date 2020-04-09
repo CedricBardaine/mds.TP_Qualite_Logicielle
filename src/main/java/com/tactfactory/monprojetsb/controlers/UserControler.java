@@ -1,9 +1,6 @@
-package com.tactfactory.monprojetsb.monprojetsb.controlers;
+package com.tactfactory.monprojetsb.controlers;
 
-import org.springframework.stereotype.Controller;
-
-@Controller
-public class ProductControler implements genericControler {
+public class UserControler implements genericControler {
 
 	@Override
 	public void index() {
@@ -34,5 +31,5 @@ public class ProductControler implements genericControler {
 		// TODO Auto-generated method stub
 		
 	}
-	
+
 }

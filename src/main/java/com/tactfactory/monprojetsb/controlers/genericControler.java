@@ -1,4 +1,4 @@
-package com.tactfactory.monprojetsb.monprojetsb.controlers;
+package com.tactfactory.monprojetsb.controlers;
 
 
 public interface genericControler {
