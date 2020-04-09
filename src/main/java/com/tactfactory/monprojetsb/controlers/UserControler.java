@@ -3,6 +3,7 @@ package com.tactfactory.monprojetsb.controlers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,9 +44,7 @@ public class UserControler implements genericControler {
 	public String createPost(Model model, @RequestParam("firstname") String fn , @RequestParam("lastname") String ln ) {
 		if (fn != "" && ln != "" ) {
 			theUserDao.save(new User(fn, ln));
-			model
-			.addAttribute("page", "index for User")
-			.addAttribute("items", theUserDao.findAll());
+			setIndexAttributs(model);
 			return "user/index";
 		}
 		else {
@@ -55,15 +54,25 @@ public class UserControler implements genericControler {
 	}
 
 	@Override
-	public void delete() {
-		// TODO Auto-generated method stub
+	@PostMapping(value="/delete")
+	public String delete(Model model, @RequestParam("id") Long id ) {
+		setIndexAttributs(model);
 		
+		if (id != null) 
+			theUserDao.deleteById(id);
+		return "user/index" ; 
 	}
 
 	@Override
 	public void details() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	private void setIndexAttributs(Model model) {
+		model
+		.addAttribute("page", "index for User")
+		.addAttribute("items", theUserDao.findAll());
 	}
 
 

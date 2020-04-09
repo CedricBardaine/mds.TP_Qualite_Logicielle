@@ -46,9 +46,7 @@ public class ProductControler implements genericControler {
 	public String createPost(Model model, @RequestParam("name") String name , @RequestParam("price") float price) {
 		if (name != "" && String.valueOf(price) != "" ) {
 			theProductDao.save(new Product(name, price));
-			model
-			.addAttribute("page" , "index for Product")
-			.addAttribute("items", theProductDao.findAll());
+			setIndexAttributs(model);
 			return "product/index" ;
 		}
 		else {
@@ -58,9 +56,13 @@ public class ProductControler implements genericControler {
 	}
 
 	@Override
-	public void delete() {
-		// TODO Auto-generated method stub
+	@PostMapping(value="/delete")
+	public String delete(Model model, @RequestParam("id") Long id ) {
+		setIndexAttributs(model);
 		
+		if (id != null) 
+			theProductDao.deleteById(id);
+		return "product/index" ; 
 	}
 
 	@Override
@@ -68,6 +70,14 @@ public class ProductControler implements genericControler {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	private void setIndexAttributs(Model model) {
+		model
+		.addAttribute("page" , "index for Product")
+		.addAttribute("items", theProductDao.findAll());
+	}
+
+
 
 
 	

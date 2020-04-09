@@ -21,7 +21,7 @@ public interface genericControler {
 	/**
 	 * Permet de supprimer un élément de la base de données par son id.
 	 */
-	public void delete() ; 
+	public String delete(Model model, Long id) ; 
 	/**
 	 *  Permet d’afficher le détails d’un élément (avec les objets non primitif liés).
 	 */

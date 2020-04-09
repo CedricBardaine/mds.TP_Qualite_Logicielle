@@ -42,11 +42,8 @@
 <td>
 
 <form action="delete" method="POST">
-
 <input type="hidden" name="id" value="${item["id"]}">
-
 <input type="submit" value="delete"/>
-
 </form>
 
 </td>
