@@ -1,9 +1,25 @@
 package com.tactfactory.monprojetsb.controlers;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.tactfactory.monprojetsb.dao.UserDAO;
+
+@Controller
+@RequestMapping(value="user")
 public class UserControler implements genericControler {
+	
+    @Autowired
+    private UserDAO theUserDao;
+
+    
 
 	@Override
-	public void index() {
+	@RequestMapping(value={"/index", "/"}, method = RequestMethod.GET)
+	public void index(Model model) {
 		// TODO Auto-generated method stub
 		
 	}

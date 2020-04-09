@@ -1,5 +1,6 @@
 package com.tactfactory.monprojetsb.controlers;
 
+import org.springframework.ui.Model;
 
 public interface genericControler {
 	/**
@@ -8,7 +9,7 @@ public interface genericControler {
 	 * Permet de naviguer vers le détails d’un élément. 
 	 * Permet de directement supprimer un élément.
 	 */
-	public void index() ; 
+	void index(Model model);  
 	/**
 	 * Permet d’afficher la vue de création d’un élément.
 	 */
@@ -24,5 +25,7 @@ public interface genericControler {
 	/**
 	 *  Permet d’afficher le détails d’un élément (avec les objets non primitif liés).
 	 */
-	public void details() ; 
+	public void details() ;
+	
+	
 }
