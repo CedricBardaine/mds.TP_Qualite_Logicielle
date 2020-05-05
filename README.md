@@ -1,7 +1,3 @@
-# TP MDS
+# TP MDS : Qualité niveau 2
 
-## ... 
-
-* Création d’interface héritant de « JpaRepository<Entité, TypeClefPrimaire> »
-
-
+Partie : TP1
