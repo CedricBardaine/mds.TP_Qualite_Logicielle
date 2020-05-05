@@ -1,4 +1,4 @@
-package com.tactfactory.monprojetsb.daostests;
+package com.tactfactory.monprojetsb.tests.daostests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -23,11 +23,13 @@ public class UserDAOTest {
 	
 	
 	@Test
-	public void TestInsertOne() {
+	public void testInsertOne() {
 		Long countBefore = this.theUserDAO.count() ; 
 		this.theUserDAO.save(new User());
 		Long countAfter = this.theUserDAO.count() ; 
 		
 		assertEquals(countBefore +1, countAfter);
 	}
+	
+	
 }

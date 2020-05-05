@@ -1,4 +1,4 @@
-package com.tactfactory.monprojetsb.servicestests;
+package com.tactfactory.monprojetsb.tests.servicestests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
