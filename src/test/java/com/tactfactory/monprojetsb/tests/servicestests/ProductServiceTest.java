@@ -21,15 +21,22 @@ import com.tactfactory.monprojetsb.entities.User;
 public class ProductServiceTest {
 	@Autowired
 	private ProductDAO theProductDAO ; 
-	
-	
+
+
 	@Test
-	public void TestInsertOne() {
+	public void testInsertOne() {
 		Long countBefore = this.theProductDAO.count() ; 
 		this.theProductDAO.save(new Product());
 		Long countAfter = this.theProductDAO.count() ; 
-		
+
 		assertEquals(countBefore +1, countAfter);
 	}
 
+	@Test 
+	public void testNotAltered() {
+		Product aNewProduct = new Product("nameProduct", (float)50.2); 
+		Product savedProduct = this.theProductDAO.save(aNewProduct) ;
+
+		assertEquals(aNewProduct, savedProduct);
+	}
 }
