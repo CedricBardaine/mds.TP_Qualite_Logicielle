@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProductControler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">monprojetsb</a> &gt; <a href="index.source.html" class="el_package">com.tactfactory.monprojetsb.controlers</a> &gt; <span class="el_source">ProductControler.java</span></div><h1>ProductControler.java</h1><pre class="source lang-java linenums">package com.tactfactory.monprojetsb.controlers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.tactfactory.monprojetsb.dao.ProductDAO;
+import com.tactfactory.monprojetsb.entities.Product;
+
+@Controller
+@RequestMapping(value= {&quot;product&quot;})
+<span class="fc" id="L18">public class ProductControler implements genericControler {</span>
+	
+	   @Autowired
+	    private ProductDAO theProductDao;
+
+	@Override
+	@RequestMapping(value={&quot;/index&quot;, &quot;/&quot;}, method = RequestMethod.GET)
+	   public String index(Model model) {
+<span class="nc" id="L26">		setIndexAttributs(model);</span>
+<span class="nc" id="L27">		return &quot;product/index&quot;;</span>
+		
+	}
+
+	@Override
+	@GetMapping(value={&quot;/create&quot;}) 
+	public String createGet() {
+<span class="nc" id="L34">		return &quot;product/create&quot;;</span>
+	}
+
+	@Override
+	public String createPost() {
+<span class="nc" id="L39">		return null;</span>
+		// TODO Auto-generated method stub
+	}
+	
+	@PostMapping(value=&quot;/create&quot;)
+	public String createPost(Model model, @RequestParam(&quot;name&quot;) String name , @RequestParam(&quot;price&quot;) float price) {
+<span class="nc bnc" id="L45" title="All 4 branches missed.">		if (name != &quot;&quot; &amp;&amp; String.valueOf(price) != &quot;&quot; ) {</span>
+<span class="nc" id="L46">			theProductDao.save(new Product(name, price));</span>
+<span class="nc" id="L47">			setIndexAttributs(model);</span>
+<span class="nc" id="L48">			return &quot;product/index&quot; ;</span>
+		}
+		else {
+<span class="nc" id="L51">			model.addAttribute(&quot;back&quot; , &quot;/product/create&quot;);</span>
+<span class="nc" id="L52">			return &quot;util/badInput&quot;;</span>
+		}
+	}
+
+	@Override
+	@PostMapping(value=&quot;/delete&quot;)
+	public String delete(Model model, @RequestParam(&quot;id&quot;) Long id ) {
+<span class="nc" id="L59">		setIndexAttributs(model);</span>
+		
+<span class="nc bnc" id="L61" title="All 2 branches missed.">		if (id != null) </span>
+<span class="nc" id="L62">			theProductDao.deleteById(id);</span>
+<span class="nc" id="L63">		return &quot;product/index&quot; ; </span>
+	}
+
+	@Override
+	@GetMapping(value=&quot;/show/{id}&quot;)
+	public String details(Model model, @PathVariable long id) {
+<span class="nc" id="L69">		String ret = &quot;product/show&quot;;</span>
+<span class="nc" id="L70">		model.addAttribute(&quot;page&quot;, &quot;Product Details&quot;);</span>
+		
+<span class="nc bnc" id="L72" title="All 2 branches missed.">		if ( theProductDao.findById(id).isPresent() )</span>
+<span class="nc" id="L73">			model.addAttribute(&quot;item&quot;, theProductDao.findById(id).get());</span>
+		else 
+<span class="nc" id="L75">			ret = &quot;util/badInput&quot; ;</span>
+		
+<span class="nc" id="L77">		return ret ;</span>
+	}
+	
+	private void setIndexAttributs(Model model) {
+<span class="nc" id="L81">		model</span>
+<span class="nc" id="L82">		.addAttribute(&quot;page&quot; , &quot;index for Product&quot;)</span>
+<span class="nc" id="L83">		.addAttribute(&quot;items&quot;, theProductDao.findAll());</span>
+<span class="nc" id="L84">	}</span>
+
+
+
+
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
