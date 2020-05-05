@@ -31,11 +31,19 @@ public class UserServiceTest {
 	private UserService theUserService ; 
 	
 	@Test
-	public void TestInsertOne() {
+	public void testInsertOne() {
 		Long countBefore = this.theUserDAO.count() ; 
 		this.theUserService.save(new User());
 		Long countAfter = this.theUserDAO.count() ; 
 		
 		assertEquals(countBefore +1, countAfter);
+	}
+	
+	@Test 
+	public void testNotAltered() {
+		User aNewUser = new User("Jean","lastname"); 
+		User savedUser = this.theUserService.save(aNewUser) ;
+		
+		assertEquals(aNewUser, savedUser);
 	}
 }
