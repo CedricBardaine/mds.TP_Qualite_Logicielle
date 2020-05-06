@@ -1,4 +1,4 @@
-package com.tactfactory.monprojetsb.tests.daostests;
+package com.tactfactory.monprojetsb.dao;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
