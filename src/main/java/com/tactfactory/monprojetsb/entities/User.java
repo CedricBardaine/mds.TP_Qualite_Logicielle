@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @SuppressWarnings("serial")
@@ -22,6 +23,7 @@ public class User implements Serializable {
 	private String lastname ; 
 	
 	@OneToMany
+	@JoinColumn(name = "MY_FK_COL", nullable = true) //for H2
 	private List<Product> products ;
 	
 	

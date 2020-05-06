@@ -1,4 +1,4 @@
-package com.tactfactory.monprojetsb.tests.servicestests;
+package com.tactfactory.monprojetsb.services;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -14,10 +14,15 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.mapping.model.IdPropertyIdentifierAccessor;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.tactfactory.monprojetsb.MonprojetsbApplication;
+import com.tactfactory.monprojetsb.MonprojetsbApplicationTests;
 import com.tactfactory.monprojetsb.dao.ProductDAO;
 import com.tactfactory.monprojetsb.dao.UserDAO;
 import com.tactfactory.monprojetsb.entities.Product;
@@ -42,11 +47,14 @@ import com.tactfactory.monprojetsb.dao.UserDAO;
 import com.tactfactory.monprojetsb.entities.User;
 import com.tactfactory.monprojetsb.services.UserService;
 
-@RunWith(SpringRunner.class)
-@AutoConfigureTestDatabase(replace = Replace.NONE)
-@DataJpaTest
-@EntityScan(basePackages="com.tactfactory.monprojetsb")
-@ComponentScan(basePackages="com.tactfactory.monprojetsb")
+//@RunWith(SpringRunner.class)
+//@AutoConfigureTestDatabase(replace = Replace.NONE)
+//@DataJpaTest
+//@EntityScan(basePackages="com.tactfactory.monprojetsb")
+//@ComponentScan(basePackages="com.tactfactory.monprojetsb")
+@ActiveProfiles("test")
+@TestPropertySource(locations = { "classpath:applicationtest.properties" })
+@SpringBootTest(classes = MonprojetsbApplicationTests.class)
 public class ProductServiceTest {
 	
 	@Autowired
