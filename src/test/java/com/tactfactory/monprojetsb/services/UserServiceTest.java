@@ -81,7 +81,7 @@ public class UserServiceTest {
 		theUserRepository.save(this.entity);
 		theUserRepository.save(this.entity);
 		long after2 = theUserRepository.count();
-		assertEquals(before + 2, after);
+		assertEquals(before2 + 2, after2);
 	}
 
 	@Test

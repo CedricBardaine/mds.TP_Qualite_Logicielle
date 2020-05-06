@@ -105,18 +105,20 @@ public class MockitoUser {
 			public User answer(InvocationOnMock invocation) throws Throwable {
 
 				System.out.println("hey1"); 
+				System.out.println(MockitoUser.this.users.size()); 
 				
 				User user = invocation.getArgument(0);
 				user.setId(1L);
 //				return MockitoUser.this.resultEntity;
 				MockitoUser.this.users.add(user); 
 				System.out.println(MockitoUser.this.users); 
+				System.out.println(MockitoUser.this.users.size()); 
 				return user;
 			}
 		}
 		);
 		
-		Mockito.when(this.repository.count()).thenReturn( new Long(  MockitoUser.this.users.size() ) );
+		Mockito.when(this.repository.count()).thenReturn(  Long.valueOf( MockitoUser.this.users.size() ) );
 	}
 
 
