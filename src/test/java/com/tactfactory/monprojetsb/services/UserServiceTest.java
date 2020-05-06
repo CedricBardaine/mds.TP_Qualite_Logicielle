@@ -51,15 +51,37 @@ public class UserServiceTest {
 		this.entity = mock.entity;
 	}
 
+//	/**
+//	 * Test d'exemple
+//	 */
+//	@Test
+//	public void Test1() {
+//		long before = theUserRepository.count();
+//		theUserService.save(this.entity);
+//		long after = theUserRepository.count();
+////		assertEquals(before + 1, after);
+//		
+//		long before2 = theUserRepository.count();
+//		theUserService.save(this.entity);
+//		theUserService.save(this.entity);
+//		long after2 = theUserRepository.count();
+//		assertEquals(before + 2, after);
+//	}
 	/**
 	 * Test d'exemple
 	 */
 	@Test
 	public void Test1() {
 		long before = theUserRepository.count();
-		theUserService.save(this.entity);
+		theUserRepository.save(this.entity);
 		long after = theUserRepository.count();
-		assertEquals(before + 1, after);
+//		assertEquals(before + 1, after);
+		
+		long before2 = theUserRepository.count();
+		theUserRepository.save(this.entity);
+		theUserRepository.save(this.entity);
+		long after2 = theUserRepository.count();
+		assertEquals(before + 2, after);
 	}
 
 	@Test

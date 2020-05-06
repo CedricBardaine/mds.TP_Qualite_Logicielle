@@ -12,6 +12,7 @@ import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
+import org.omg.CORBA.portable.ValueOutputStream;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
@@ -63,10 +64,13 @@ public class MockitoUser {
 	public User resultEntity;
 
 	public Optional<User> resultOptional;
+	
+	public List<User> users = new ArrayList<>() ; 
 
 	public MockitoUser(UserDAO repository) {
 		this.repository = repository;
 		this.entity = new User("fn1","ln1");
+		this.users.add(this.entity) ; 
 	}
 
 	public void intialize() {
@@ -85,17 +89,34 @@ public class MockitoUser {
 		Mockito.when(this.repository.findAll((Pageable) ArgumentMatchers.any()))
 		.thenReturn(new PageImpl<>(Arrays.asList(this.resultEntity)));
 
+//		Mockito.when(this.repository.save(ArgumentMatchers.any())).thenAnswer(new Answer<User>() {
+//			
+//			@Override
+//			public User answer(InvocationOnMock invocation) throws Throwable {
+//				User user = invocation.getArgument(0);
+//				user.setId(1L);
+//				return MockitoUser.this.resultEntity;
+//			}
+//		});
 		Mockito.when(this.repository.save(ArgumentMatchers.any())).thenAnswer(new Answer<User>() {
+			
 
 			@Override
 			public User answer(InvocationOnMock invocation) throws Throwable {
+
+				System.out.println("hey1"); 
+				
 				User user = invocation.getArgument(0);
 				user.setId(1L);
-				return MockitoUser.this.resultEntity;
+//				return MockitoUser.this.resultEntity;
+				MockitoUser.this.users.add(user); 
+				System.out.println(MockitoUser.this.users); 
+				return user;
 			}
-		});
+		}
+		);
 		
-//		Mockito.when(this.repository.count()).thenReturn((long) 5);
+		Mockito.when(this.repository.count()).thenReturn( new Long(  MockitoUser.this.users.size() ) );
 	}
 
 
